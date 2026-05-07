@@ -24,12 +24,26 @@
 | 레이어 | 기술 |
 |--------|------|
 | 엣지 추론 | Hailo-8L NPU, YOLOv8, Raspberry Pi 5 |
-| MLOps 파이프라인 | Kubeflow Pipelines, MLflow |
-| 모델 서빙 | KServe, vLLM |
+| MLOps 파이프라인 | Kubeflow Pipelines |
+| 모델 서빙 | KServe |
 | 트래픽 제어 | Istio, Knative |
 | 배포 자동화 | ArgoCD |
 | 모니터링 | Grafana, Prometheus |
 | 오케스트레이션 | Kubernetes |
+
+---
+
+## 🖥️ 테스트 환경
+
+| 구분 | 사양 |
+|------|------|
+| K8s 클러스터 | ai-storage-master (control plane) |
+| 워커 노드 | ai-storage-worker-01, csd-server-01 |
+| GPU 서버 | gpu-server-03 (GPU x2) |
+| 엣지 디바이스 | Raspberry Pi 5 + Hailo-8L NPU |
+| MLOps 플랫폼 | Kubeflow Pipelines |
+| 모델 서빙 | KServe (RawDeployment 모드) |
+| 서비스 메시 | Istio 1.24.3 |
 
 ---
 
