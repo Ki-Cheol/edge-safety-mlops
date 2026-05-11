@@ -18,9 +18,7 @@
 
 ## 🏗️ 아키텍처
 
-[![edge-safety-mlops Architecture](docs/images/architecture.png)](docs/images/architecture.html)
-
-> 📐 인터랙티브 아키텍처 다이어그램: [architecture.html](docs/images/architecture.html)
+![edge-safety-mlops Architecture](docs/images/architecture.png)
 
 ---
 
