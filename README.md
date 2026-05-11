@@ -17,6 +17,9 @@
 ---
 
 ## 🏗️ 아키텍처
+
+![edge-safety-mlops Architecture](docs/images/architecture.png)
+
 ---
 
 ## 🔧 기술 스택
