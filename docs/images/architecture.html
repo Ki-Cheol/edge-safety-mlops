@@ -1,0 +1,276 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.wrap { background: #fff; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+.title-bar { background: #0F172A; color: #fff; text-align: center; padding: 14px 0 10px; }
+.title-bar h1 { font-size: 20px; font-weight: 700; letter-spacing: 1px; }
+.title-bar p { font-size: 12px; color: #94A3B8; margin-top: 2px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; padding: 14px; background: #f8fafc; }
+.col { display: flex; flex-direction: column; gap: 10px; }
+.section { border-radius: 14px; overflow: hidden; }
+.sec-hdr { padding: 10px 14px; font-size: 13px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+.sec-body { padding: 10px; display: flex; flex-direction: column; gap: 6px; }
+.item { border-radius: 10px; padding: 9px 12px; }
+.item-top { font-size: 11px; font-weight: 700; opacity: 0.6; margin-bottom: 1px; }
+.item-title { font-size: 13px; font-weight: 700; }
+.item-sub { font-size: 11px; margin-top: 2px; opacity: 0.8; }
+.badges { display: flex; gap: 6px; margin-top: 6px; }
+.badge { border-radius: 20px; padding: 3px 10px; font-size: 11px; font-weight: 700; }
+.versions { display: flex; gap: 6px; margin-top: 6px; }
+.ver { border-radius: 8px; padding: 4px 14px; font-size: 14px; font-weight: 800; text-align: center; }
+/* Edge */
+.edge-sec { border: 2.5px solid #F97316; background: #FFF7ED; }
+.edge-hdr { background: #F97316; }
+.edge-item { background: #FFEDD5; border: 1.5px solid #FED7AA; color: #9A3412; }
+.edge-alert { background: #FEF2F2; border: 1.5px solid #FECACA; color: #991B1B; }
+/* ArgoCD */
+.argo-sec { border: 2.5px solid #A855F7; background: #FDF4FF; }
+.argo-hdr { background: #A855F7; }
+.argo-item { background: #F3E8FF; border: 1.5px solid #E9D5FF; color: #6B21A8; }
+/* Kubeflow */
+.kube-sec { border: 2.5px solid #4F6EF7; background: #EEF2FF; }
+.kube-hdr { background: #4F6EF7; }
+.kube-item { background: #C7D2FE; border: 1.5px solid #A5B4FC; color: #1E1B4B; }
+/* MLflow */
+.ml-sec { border: 2.5px solid #22C55E; background: #F0FDF4; }
+.ml-hdr { background: #22C55E; }
+.ml-item { background: #DCFCE7; border: 1.5px solid #BBF7D0; color: #14532D; }
+.ml-url { background: #DCFCE7; border: 1.5px solid #86EFAC; border-radius: 20px; padding: 3px 10px; font-size: 11px; color: #15803D; font-weight: 600; text-align: center; margin-top: 4px; }
+/* KServe */
+.ks-sec { border: 2.5px solid #14B8A6; background: #F0FDFA; }
+.ks-hdr { background: #14B8A6; }
+.ks-item { background: #CCFBF1; border: 1.5px solid #99F6E4; color: #0F766E; }
+.istio-item { background: #FFF7ED; border: 1.5px solid #FED7AA; color: #C2410C; }
+/* Monitoring */
+.mon-sec { border: 2.5px solid #374151; background: #F9FAFB; }
+.mon-hdr { background: #374151; }
+.mon-grafana { background: #FFF7ED; border: 1.5px solid #FED7AA; color: #9A3412; }
+.mon-prom { background: #FEF3C7; border: 1.5px solid #FDE68A; color: #92400E; }
+.mon-alert { background: #FEF2F2; border: 1.5px solid #FECACA; color: #991B1B; }
+.metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.metric { border-radius: 10px; padding: 8px; text-align: center; }
+.metric-label { font-size: 10px; font-weight: 600; opacity: 0.8; }
+.metric-val { font-size: 24px; font-weight: 800; line-height: 1.1; }
+.metric-unit { font-size: 10px; opacity: 0.7; }
+.m1 { background: #F0FDF4; border: 1.5px solid #BBF7D0; color: #15803D; }
+.m2 { background: #EFF6FF; border: 1.5px solid #BFDBFE; color: #1E40AF; }
+.m3 { background: #FFF7ED; border: 1.5px solid #FED7AA; color: #C2410C; }
+.m4 { background: #F0FDFA; border: 1.5px solid #99F6E4; color: #0F766E; }
+/* Client */
+.client { border: 2px solid #CBD5E1; background: #F8FAFC; border-radius: 10px; padding: 10px 14px; text-align: center; color: #334155; }
+.client-title { font-size: 13px; font-weight: 700; }
+.client-sub { font-size: 11px; color: #64748B; margin-top: 2px; }
+/* Arrow section */
+.arrows { padding: 0 14px 6px; display: flex; flex-wrap: wrap; gap: 6px; }
+.arrow-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #374151; }
+.arrow-line { height: 2px; width: 32px; }
+.arrow-line.dash { background: repeating-linear-gradient(to right, currentColor 0, currentColor 5px, transparent 5px, transparent 9px); }
+/* Legend */
+.legend { background: #F8FAFC; border-top: 1.5px solid #E2E8F0; padding: 10px 14px; display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.leg-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #374151; }
+.leg-dot { width: 10px; height: 10px; border-radius: 50%; }
+.stack-bar { padding: 8px 14px; display: flex; flex-wrap: wrap; gap: 5px; background: #fff; border-top: 1px solid #E2E8F0; }
+.stk { border-radius: 20px; padding: 2px 10px; font-size: 11px; font-weight: 700; }
+</style>
+
+<div class="wrap">
+  <div class="title-bar">
+    <h1>edge-safety-mlops</h1>
+    <p>End-to-End MLOps Architecture &nbsp;|&nbsp; Infant &amp; Pet Safety Monitoring</p>
+  </div>
+
+  <div class="grid">
+    <!-- COL1: EDGE -->
+    <div class="col">
+      <div class="section edge-sec">
+        <div class="sec-hdr edge-hdr">EDGE LAYER</div>
+        <div class="sec-body">
+          <div class="item edge-item">
+            <div class="item-title">Raspberry Pi 5</div>
+            <div class="item-sub">Hailo-8L NPU &nbsp;|&nbsp; 13 TOPS</div>
+          </div>
+          <div class="item edge-item">
+            <div class="item-top">STEP 01</div>
+            <div class="item-title">YOLOv8 Pose</div>
+            <div class="item-sub">영아 뒤집힘 감지</div>
+          </div>
+          <div class="item edge-item">
+            <div class="item-top">STEP 02</div>
+            <div class="item-title">YOLOv8 Det</div>
+            <div class="item-sub">반려동물 감지</div>
+          </div>
+          <div class="item edge-alert">
+            <div class="item-title">⚠ 위험 감지 → 알림</div>
+            <div class="item-sub">부모 스마트폰 푸시</div>
+          </div>
+          <div class="badges">
+            <span class="badge" style="background:#FED7AA;color:#9A3412;">30 FPS +</span>
+            <span class="badge" style="background:#DCFCE7;color:#166534;">저전력</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COL2: ArgoCD + Kubeflow -->
+    <div class="col">
+      <div class="section argo-sec">
+        <div class="sec-hdr argo-hdr">ArgoCD</div>
+        <div class="sec-body">
+          <div class="item argo-item">
+            <div class="item-title">GitOps 자동 배포</div>
+            <div class="item-sub">Git 변경 감지 → K8s 자동 적용</div>
+            <div class="item-sub">파이프라인 yaml | InferenceService yaml</div>
+          </div>
+        </div>
+      </div>
+      <div class="section kube-sec">
+        <div class="sec-hdr kube-hdr">Kubeflow Pipelines</div>
+        <div class="sec-body">
+          <div class="item kube-item">
+            <div class="item-top">STEP 01</div>
+            <div class="item-title">데이터 준비</div>
+            <div class="item-sub">COCO Dataset 전처리</div>
+          </div>
+          <div style="text-align:center;font-size:18px;color:#4F6EF7;line-height:1;">↓</div>
+          <div class="item kube-item">
+            <div class="item-top">STEP 02</div>
+            <div class="item-title">학습</div>
+            <div class="item-sub">gpu-server-03 | YOLOv8 파인튜닝</div>
+          </div>
+          <div style="text-align:center;font-size:18px;color:#4F6EF7;line-height:1;">↓</div>
+          <div class="item kube-item">
+            <div class="item-top">STEP 03</div>
+            <div class="item-title">평가</div>
+            <div class="item-sub">mAP &nbsp;|&nbsp; F1 Score</div>
+          </div>
+          <div style="text-align:center;font-size:18px;color:#4F6EF7;line-height:1;">↓</div>
+          <div class="item kube-item">
+            <div class="item-top">STEP 04</div>
+            <div class="item-title">MLflow 등록</div>
+            <div class="item-sub">모델 버전 저장소 등록</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COL3: MLflow + KServe + Client -->
+    <div class="col">
+      <div class="section ml-sec">
+        <div class="sec-hdr ml-hdr">MLflow</div>
+        <div class="sec-body">
+          <div class="item ml-item">
+            <div class="item-title">실험 추적 &nbsp;|&nbsp; 모델 저장소</div>
+            <div class="item-sub">파라미터 · 메트릭 · 아티팩트</div>
+          </div>
+          <div class="versions">
+            <div class="ver" style="background:#DCFCE7;color:#15803D;flex:1;">v1</div>
+            <div class="ver" style="background:#BBF7D0;color:#15803D;flex:1;">v2</div>
+            <div class="ver" style="background:#86EFAC;color:#166534;flex:1;">v3</div>
+          </div>
+          <div class="ml-url">http://mlflow.kubeflow:80</div>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:20px;color:#14B8A6;padding:2px 0;">↓ 모델 로드</div>
+      <div class="section ks-sec">
+        <div class="sec-hdr ks-hdr">KServe</div>
+        <div class="sec-body">
+          <div class="item ks-item">
+            <div class="item-title">InferenceService</div>
+            <div class="item-sub">YOLOv8 Predictor</div>
+          </div>
+          <div style="display:flex;gap:6px;">
+            <div class="item ks-item" style="flex:1;">
+              <div class="item-title">카나리</div>
+              <div class="item-sub">90% / 10%</div>
+            </div>
+            <div class="item ks-item" style="flex:1;">
+              <div class="item-title">오토스케일</div>
+              <div class="item-sub">Knative KPA</div>
+            </div>
+          </div>
+          <div class="item istio-item">
+            <div class="item-title">Istio 서비스 메시</div>
+            <div class="item-sub">mTLS · VirtualService · 트래픽 제어</div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:20px;color:#14B8A6;padding:2px 0;">↓ 추론 API</div>
+      <div class="client">
+        <div class="client-title">클라이언트</div>
+        <div class="client-sub">REST API 추론 호출</div>
+      </div>
+    </div>
+
+    <!-- COL4: Monitoring -->
+    <div class="col">
+      <div class="section mon-sec">
+        <div class="sec-hdr mon-hdr">모니터링</div>
+        <div class="sec-body">
+          <div class="item mon-grafana">
+            <div class="item-title">Grafana Dashboard</div>
+            <div class="item-sub">실시간 시각화 · 알람 설정</div>
+          </div>
+          <div class="item mon-prom">
+            <div class="item-title">Prometheus</div>
+            <div class="item-sub">메트릭 수집 · 저장</div>
+          </div>
+          <div class="metric-grid">
+            <div class="metric m1">
+              <div class="metric-label">감지 정확도</div>
+              <div class="metric-val">94%</div>
+              <div class="metric-unit">mAP@0.5</div>
+            </div>
+            <div class="metric m2">
+              <div class="metric-label">추론 지연시간</div>
+              <div class="metric-val">33ms</div>
+              <div class="metric-unit">p99 latency</div>
+            </div>
+            <div class="metric m3">
+              <div class="metric-label">GPU 사용률</div>
+              <div class="metric-val">78%</div>
+              <div class="metric-unit">gpu-server-03</div>
+            </div>
+            <div class="metric m4">
+              <div class="metric-label">처리량</div>
+              <div class="metric-val">1.2k</div>
+              <div class="metric-unit">req / min</div>
+            </div>
+          </div>
+          <div class="item mon-alert">
+            <div class="item-title">알람 규칙</div>
+            <div class="item-sub">정확도 &lt; 85% → 재학습 트리거</div>
+            <div class="item-sub">지연시간 &gt; 100ms → 스케일아웃</div>
+            <div class="item-sub">GPU &gt; 90% → 알람</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flow arrows -->
+  <div class="arrows">
+    <span style="font-size:11px;font-weight:700;color:#374151;">흐름&nbsp;:</span>
+    <div class="arrow-item"><div class="arrow-line dash" style="color:#F97316;"></div><span>엣지 데이터 전송</span></div>
+    <div class="arrow-item" style="color:#A855F7;">→<span style="margin-left:3px;">ArgoCD 엣지 모델 배포</span></div>
+    <div class="arrow-item" style="color:#A855F7;">↓<span style="margin-left:3px;">ArgoCD → Kubeflow 자동 반영</span></div>
+    <div class="arrow-item" style="color:#22C55E;">→<span style="margin-left:3px;">Kubeflow → MLflow 모델 등록</span></div>
+    <div class="arrow-item" style="color:#14B8A6;">↓<span style="margin-left:3px;">MLflow → KServe 모델 로드</span></div>
+    <div class="arrow-item" style="color:#EF4444;">↑<span style="margin-left:3px;">Monitoring → 재학습 자동 트리거</span></div>
+  </div>
+
+  <!-- Stack bar -->
+  <div class="stack-bar">
+    <span style="font-size:11px;font-weight:700;color:#6B7280;">STACK</span>
+    <span class="stk" style="background:#EEF2FF;color:#4338CA;">Kubeflow</span>
+    <span class="stk" style="background:#F0FDF4;color:#15803D;">MLflow</span>
+    <span class="stk" style="background:#F0FDFA;color:#0F766E;">KServe</span>
+    <span class="stk" style="background:#FFF7ED;color:#C2410C;">Istio</span>
+    <span class="stk" style="background:#FDF4FF;color:#7E22CE;">ArgoCD</span>
+    <span class="stk" style="background:#FFF7ED;color:#92400E;">Grafana</span>
+    <span class="stk" style="background:#FFF7ED;color:#9A3412;">Hailo-8L NPU</span>
+    <span class="stk" style="background:#F0FDF4;color:#166534;">YOLOv8</span>
+    <span class="stk" style="background:#F0FDFA;color:#0F766E;">Knative</span>
+    <span class="stk" style="background:#EFF6FF;color:#1D4ED8;">Kubernetes</span>
+    <span style="font-size:10px;color:#9CA3AF;margin-left:auto;">github.com/Ki-Cheol/edge-safety-mlops</span>
+  </div>
+</div>
